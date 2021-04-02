@@ -8,16 +8,12 @@ class TreeNode:
 
 class Solution:
     def __init__(self):
-        self.vals = list()
+        self.val = float('inf')
 
     def minDiffInBST(self, root: TreeNode) -> int:
-        def travels(root: TreeNode):
-            if root is None:
-                return
-            self.vals.append(root.val)
-            travels(root.left)
-            travels(root.right)
-
-        travels(root)
-        self.vals.sort()
-        return min([self.vals[i+1]-self.vals[i] for i in range(len(self.vals)-1)])
+        if root is None:
+            return 0
+        left = self.minDiffInBST(root.left)
+        right = self.minDiffInBST(root.right)
+        self.val = min(root.val-left,root.val-right,self.val)
+        return self.val
