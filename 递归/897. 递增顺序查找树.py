@@ -23,3 +23,21 @@ class Solution:
             cur.right = TreeNode(val)
             cur = cur.right
         return head.right
+
+
+class Solution2:
+    def increasingBST(self, root: TreeNode) -> TreeNode:
+        values = list()
+
+        def inorder(root: TreeNode):
+            if root is not None:
+                inorder(root.left)
+                values.append(root.val)
+                inorder(root.right)
+
+        inorder(root)
+        head = cur = TreeNode()
+        for val in values:
+            cur.right = TreeNode(val)
+            cur = cur.right
+        return head.right
