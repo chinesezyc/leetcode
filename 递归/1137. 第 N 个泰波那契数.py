@@ -1,5 +1,5 @@
 class Solution:
-    def tribonacci2(self, n: int) -> int:
+    def tribonacci1(self, n: int) -> int:
         def fab(n: int) -> int:
             if n == 0:
                 return 0
@@ -10,6 +10,15 @@ class Solution:
         return fab(n)
 
 
+    def tribonacci2(self, n: int) -> int:
+        if n == 0:
+            return 0
+        if n <= 2:
+            return 1
+        i, j, k = 0, 1, 1
+        for _ in range(3, n + 1):
+            i, j, k = j, k, i + j + k
+        return k
 
 
 if __name__ == "__main__":
