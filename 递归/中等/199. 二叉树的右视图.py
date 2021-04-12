@@ -10,7 +10,7 @@ class TreeNode:
 
 
 class Solution:
-    def rightSideView(self, root: TreeNode) -> List[int]:
+    def rightSideView2(self, root: TreeNode) -> List[int]:
         if root is None:
             return []
         queue = [[root, 1]]
@@ -26,6 +26,20 @@ class Solution:
                 queue.append([node.right, length + 1])
 
         return [res[i] for i in range(1, max_depth + 1)]
+
+    def rightSideView(self, root: TreeNode) -> List[int]:
+        queue = [[root, 0]]
+        max_depth = -1
+        res = {}
+        while queue:
+            node, length = queue.pop(-1)
+            if node is not None:
+                max_depth = max(max_depth, length)
+                res.setdefault(length, node.val)
+                queue.append([node.left, length + 1])
+                queue.append([node.right, length + 1])
+
+        return [res[i] for i in range(0, max_depth + 1)]
 
 
 if __name__ == '__main__':
