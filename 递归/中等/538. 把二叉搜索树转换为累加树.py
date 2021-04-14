@@ -34,16 +34,16 @@ class Solution:
         helper(root)
         return root
 
-    def __init__(self):
-        self.tmp = 0
-
     def convertBST(self, root: TreeNode) -> TreeNode:
+        tmp = 0
+
         def helper(root: TreeNode):
+            nonlocal tmp
             if root is None:
                 return
             helper(root.right)
-            self.tmp += root.val
-            root.val = self.tmp
+            tmp += root.val
+            root.val = tmp
             helper(root.left)
 
         helper(root)
