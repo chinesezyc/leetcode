@@ -6,39 +6,12 @@ class TreeNode:
         self.right = right
 
 
-class Solution:
-    def convertBST(self, root: TreeNode) -> TreeNode:
-        sorted_list = []
-
-        def inoder(root: TreeNode):
-            if root is None:
-                return
-            inoder(root.left)
-            sorted_list.append(root.val)
-            inoder(root.right)
-
-        inoder(root)
-        tmp = 0
-        sum_dict = {}
-        for i in sorted_list[::-1]:
-            tmp += i
-            sum_dict[i] = tmp
-
-        def helper(root: TreeNode):
-            if root is None:
-                return
-            helper(root.left)
-            root.val = sum_dict[root.val]
-            helper(root.right)
-
-        helper(root)
-        return root
 if __name__ == '__main__':
-    sorted_list=[1,2,3,4,5]
-    tmp=0
-    sum_dict={}
+    sorted_list = [1, 2, 3, 4, 5]
+    tmp = 0
+    sum_dict = {}
     for i in sorted_list[::-1]:
-        tmp+=i
-        sum_dict[i]=tmp
+        tmp += i
+        sum_dict[i] = tmp
 
     print(sum_dict)
