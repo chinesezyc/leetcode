@@ -8,9 +8,9 @@ class TreeNode:
 
 class Solution:
     def trimBST(self, root: TreeNode, low: int, high: int) -> TreeNode:
-        def helper(root: TreeNode):
+        def helper(root: TreeNode) -> TreeNode:
             if root is None:
-                return
+                return root
             if root.val < low:
                 return helper(root.right)
             if root.val > high:
