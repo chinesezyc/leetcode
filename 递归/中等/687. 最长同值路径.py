@@ -10,7 +10,7 @@ class Solution:
     def __init__(self):
         self.ans = 0
 
-    def longestUnivaluePath(self, root: TreeNode) -> int:
+    def longestUnivaluePath2(self, root: TreeNode) -> int:
 
         def helper(node: TreeNode) -> int:
             if node is None:
@@ -28,6 +28,22 @@ class Solution:
             self.ans = max(self.ans, max_val)
             print(self.ans, max_val)
             return max_val
+
+        helper(root)
+        return self.ans
+
+    def longestUnivaluePath(self, root: TreeNode) -> int:
+
+        def helper(node: TreeNode) -> int:
+            if node is None:
+                return 0
+            left = helper(node.left)
+            right = helper(node.right)
+
+            left = left + 1 if node.left and node.left.val == node.val else 0
+            right = right + 1 if node.right and node.right.val == node.val else 0
+            self.ans = max(self.ans, left + right)
+            return max(left, right)
 
         helper(root)
         return self.ans
