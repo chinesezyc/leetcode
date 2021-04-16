@@ -30,4 +30,4 @@ class Solution:
             return max_val
 
         helper(root)
-        return self.ans - 1
+        return self.ans
