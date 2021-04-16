@@ -16,8 +16,8 @@ class Solution:
             if node is None:
                 return 0
             max_val = 0
-            left = self.longestUnivaluePath(node.left)
-            right = self.longestUnivaluePath(node.right)
+            left = helper(node.left)
+            right = helper(node.right)
 
             if node.left and node.left.val == node.val and node.right and node.right.val == node.val:
                 self.ans = max(self.ans, left + right + 2)
