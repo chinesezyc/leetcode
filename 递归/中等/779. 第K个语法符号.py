@@ -1,5 +1,5 @@
 class Solution:
-    def kthGrammar(self, N: int, K: int) -> int:
+    def kthGrammar2(self, N: int, K: int) -> int:
         res = [0]
         for _ in range(1, N):
             length = len(res)
@@ -12,6 +12,11 @@ class Solution:
                     res.append(1)
                     res.append(0)
         return res[K - 1]
+
+    def kthGrammar(self, N: int, K: int) -> int:
+        if N == 1:
+            return 0
+        return (1 - K % 2) ^ self.kthGrammar(N - 1, (K + 1) // 2)
 
 
 if __name__ == "__main__":
