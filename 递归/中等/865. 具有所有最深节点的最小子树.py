@@ -7,7 +7,7 @@ class TreeNode:
 
 
 class Solution:
-    def subtreeWithAllDeepest(self, root: TreeNode) -> TreeNode:
+    def subtreeWithAllDeepest1(self, root: TreeNode) -> TreeNode:
         if root is None:
             return root
 
@@ -24,3 +24,17 @@ class Solution:
             return self.subtreeWithAllDeepest(root.left)
         else:
             return self.subtreeWithAllDeepest(root.right)
+
+    def subtreeWithAllDeepest(self, root: TreeNode) -> TreeNode:
+        if root is None:
+            return root
+        length_dict={None:0}
+        def dfs(node: TreeNode,father_node: TreeNode = None):
+            if node:
+                length_dict[node]=length_dict[father_node]+1
+                dfs(node.left,node)
+                dfs(node.right,node)
+        dfs(root)
+        print([i.val for i in length_dict.keys() if i])
+        print([i for i in length_dict.values() if i > 0])
+
