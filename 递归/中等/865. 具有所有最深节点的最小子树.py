@@ -11,17 +11,16 @@ class Solution:
         if root is None:
             return root
 
-        queue = [[root, 0]]
-        max_length = 0
-        res = []
-        while queue:
-            node, length = queue.pop(-1)
+        def helper(node: TreeNode):
+            if node is None:
+                return 0
+            return max(helper(node.left) + 1, helper(node.right) + 1)
 
-            if node:
-                res.append(node.val)
-                max_length = max(max_length, length)
-                queue.append([node.right, length + 1])
-                queue.append([node.left, length + 1])
-            else:
-                res.append(None)
-        print(res)
+        left_max_len = helper(root.left)
+        right_max_len = helper(root.right)
+        if left_max_len == right_max_len:
+            return root
+        elif left_max_len > right_max_len:
+            return self.subtreeWithAllDeepest(root.left)
+        else:
+            return self.subtreeWithAllDeepest(root.right)
