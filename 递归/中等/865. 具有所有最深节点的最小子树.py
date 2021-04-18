@@ -29,12 +29,16 @@ class Solution:
         if root is None:
             return root
         length_dict={None:0}
+        max_len=0
         def dfs(node: TreeNode,father_node: TreeNode = None):
+            nonlocal max_len
             if node:
                 length_dict[node]=length_dict[father_node]+1
+                max_len=max(max_len,length_dict[node])
                 dfs(node.left,node)
                 dfs(node.right,node)
         dfs(root)
         print([i.val for i in length_dict.keys() if i])
         print([i for i in length_dict.values() if i > 0])
+        print(max_len)
 
