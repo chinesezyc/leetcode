@@ -9,27 +9,27 @@ class Solution:
             for t in s:
                 res = res * 10 + t
             return res
-
-        Q = collections.deque()
-        for i in range(1, 10):
-            Q.append([i])
         res = []
-        while Q:
-            v = Q.popleft()
+        queue = []
+        for i in range(1, 10):
+            queue.append([i])
+
+        while queue:
+            v = queue.pop(0)
             if len(v) == n:
                 res.append(cal(v))
             elif k == 0:
                 v.append(v[-1])
-                Q.append(v)
+                queue.append(v)
             else:
                 if v[-1] - k >= 0:
                     t = v.copy()
                     t.append(t[-1] - k)
-                    Q.append(t)
+                    queue.append(t)
                 if v[-1] + k < 10:
                     t = v.copy()
                     t.append(t[-1] + k)
-                    Q.append(t)
+                    queue.append(t)
         return res
 
 
