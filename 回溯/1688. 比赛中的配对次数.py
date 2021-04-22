@@ -2,7 +2,7 @@ from typing import List
 
 
 class Solution:
-    def numberOfMatches(self, n: int) -> int:
+    def numberOfMatches1(self, n: int) -> int:
         num = 0
         while n > 1:
             if n % 2 == 0:
@@ -12,6 +12,14 @@ class Solution:
                 n = (n - 1) / 2 + 1
                 num += n - 1
         return int(num)
+
+    def numberOfMatches(self, n: int) -> int:
+        if n <= 1:
+            return 0
+        if n % 2:
+            return n // 2 + self.numberOfMatches(n // 2 + 1)
+        else:
+            return n // 2 + self.numberOfMatches(n // 2)
 
 
 if __name__ == "__main__":
