@@ -1,0 +1,27 @@
+from typing import List
+
+
+class Solution:
+    def __init__(self):
+        self.res = []
+
+    def backtrace(self, nums: List[int], trace: List[int]):
+        if len(nums) == len(trace):
+            self.res.append(trace.copy())
+        for each in nums:
+            if each in trace:
+                continue
+            trace.append(each)
+            self.backtrace(nums, trace)
+            trace.pop(-1)
+
+    def permute(self, nums: List[int]) -> List[List[int]]:
+
+        self.backtrace(nums, [])
+        return self.res
+
+
+if __name__ == "__main__":
+    solution = Solution()
+    ret = solution.permute(nums=[1, 2, 3])
+    print(ret)
