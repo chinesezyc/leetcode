@@ -20,7 +20,7 @@ class Solution:
         self.backtrace(nums, [])
         return self.res
 
-    def permute(self, nums: List[int]) -> List[List[int]]:
+    def permute2(self, nums: List[int]) -> List[List[int]]:
         res = []
 
         def backtrace(nums: List[int], trace: List[int]):
@@ -34,6 +34,22 @@ class Solution:
                 trace.pop(-1)
 
         backtrace(nums, [])
+        return res
+
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        res = []
+
+        def backtrace(trace: List[int]):
+            if len(nums) == len(trace):
+                res.append(trace.copy())
+            for each in nums:
+                if each in trace:
+                    continue
+                trace.append(each)
+                backtrace(trace)
+                trace.pop(-1)
+
+        backtrace([])
         return res
 
 
