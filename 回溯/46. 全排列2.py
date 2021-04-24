@@ -5,17 +5,18 @@ class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
         res = []
 
-        def backtrace(trace: List[int],start:int,end:int):
-            # print(start,end)
-            if len(nums) == len(trace):
+        def backtrace(trace: List[int], tmp_nums: List[int]):
+            if len(tmp_nums) == 0:
                 if trace not in res:
                     res.append(trace.copy())
-            for each in nums[start:end+1]:
+            for idx in range(len(tmp_nums)):
+                each = tmp_nums.pop(idx)
                 trace.append(each)
-                backtrace(trace,start+1,end)
+                backtrace(trace, tmp_nums)
                 trace.pop(-1)
+                tmp_nums.insert(idx, each)
 
-        backtrace([],0,len(nums))
+        backtrace([], nums)
         return res
 
 
