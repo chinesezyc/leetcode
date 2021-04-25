@@ -2,7 +2,7 @@ from typing import List
 
 
 class Solution:
-    def subsets(self, nums: List[int]) -> List[List[int]]:
+    def subsets1(self, nums: List[int]) -> List[List[int]]:
         res = []
         t = []
 
@@ -18,6 +18,16 @@ class Solution:
         backtrace(0, len(nums))
         return res
 
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        res = []
+
+        def backtrace(idx: int, tmp_nums: List[int]):
+            res.append(tmp_nums.copy())
+            for i in range(idx, len(nums)):
+                backtrace(i + 1, tmp_nums + [nums[i]])
+
+        backtrace(0, [])
+        return res
 
 if __name__ == "__main__":
     solution = Solution()
