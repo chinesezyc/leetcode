@@ -21,13 +21,16 @@ class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         res = []
 
-        def backtrace(idx: int, tmp_nums: List[int]):
-            res.append(tmp_nums.copy())
+        def backtrace(idx: int, trace: List[int]):
+            res.append(trace.copy())
             for i in range(idx, len(nums)):
-                backtrace(i + 1, tmp_nums + [nums[i]])
+                trace.append(nums[i])
+                backtrace(i + 1, trace)
+                trace.pop(-1)
 
         backtrace(0, [])
         return res
+
 
 if __name__ == "__main__":
     solution = Solution()
