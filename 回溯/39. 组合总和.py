@@ -11,11 +11,11 @@ class Solution:
             nonlocal idx
             tmp = sum(trace)
             if tmp == target:
-                res.append(trace.copy())
-                idx += 1
+                tmp_list = sorted(trace).copy()
+                if tmp_list not in res:
+                    res.append(tmp_list)
                 return
             elif tmp > target:
-                idx += 1
                 return
 
             for i in range(idx, len(candidates)):
