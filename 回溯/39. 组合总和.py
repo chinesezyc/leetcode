@@ -5,29 +5,31 @@ class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         res = []
         candidates.sort()
+        idx = 0
 
-        def backtrace(idx: int, trace: List[int]):
+        def backtrace(trace: List[int]):
+            nonlocal idx
             tmp = sum(trace)
             if tmp == target:
                 res.append(trace.copy())
+                idx += 1
                 return
             elif tmp > target:
+                idx += 1
                 return
 
             for i in range(idx, len(candidates)):
-                if candidates[i]>target:
+                if candidates[i] > target:
                     continue
                 trace.append(candidates[i])
-                backtrace(i + 1, trace)
+                backtrace(trace)
                 trace.pop(-1)
-                # backtrace(i + 1, trace)
 
-
-        backtrace(0, [])
+        backtrace([])
         return res
 
 
 if __name__ == "__main__":
     solution = Solution()
-    ret = solution.combinationSum(candidates=[2, 3, 6, 7], target=7)
+    ret = solution.combinationSum(candidates=[2, 3, 5], target=8)
     print(ret)
