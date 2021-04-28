@@ -7,7 +7,7 @@ class Solution:
         candidates.sort()
 
         def backtrace(index: int, target_: int, trace: List[int]):
-            pre_num=None
+            pre_num = None
             if target_ == 0:
                 res.append(trace.copy())
                 return
@@ -19,9 +19,9 @@ class Solution:
                     continue
                 if pre_num == candidates[i]:
                     continue
-                pre_num=candidates[i]
+                pre_num = candidates[i]
                 trace.append(candidates[i])
-                backtrace(i+1, target_ - candidates[i], trace)
+                backtrace(i + 1, target_ - candidates[i], trace)
                 trace.pop(-1)
 
         backtrace(0, target, [])
@@ -30,5 +30,5 @@ class Solution:
 
 if __name__ == "__main__":
     solution = Solution()
-    ret = solution.combinationSum2(candidates = [10,1,2,7,6,1,5], target = 8)
+    ret = solution.combinationSum2(candidates=[10, 1, 2, 7, 6, 1, 5], target=8)
     print(ret)
