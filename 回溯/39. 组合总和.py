@@ -2,7 +2,7 @@ from typing import List
 
 
 class Solution:
-    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
         res = []
         candidates.sort()
         idx = 0
@@ -26,6 +26,27 @@ class Solution:
                 trace.pop(-1)
 
         backtrace([])
+        return res
+
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        res = []
+        candidates.sort()
+
+        def backtrace(index: int, target_: int, trace: List[int]):
+            if target_ == 0:
+                res.append(trace.copy())
+                return
+            elif target < 0:
+                return
+
+            for i in range(index, len(candidates)):
+                if candidates[i] > target_:
+                    continue
+                trace.append(candidates[i])
+                backtrace(i, target_ - candidates[i], trace)
+                trace.pop(-1)
+
+        backtrace(0, target, [])
         return res
 
 
