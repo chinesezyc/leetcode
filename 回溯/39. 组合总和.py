@@ -40,7 +40,7 @@ class Solution:
                 return
 
             for i in range(index, len(candidates)):
-                if candidates[i] > target_:
+                if target_ - candidates[i] < 0:
                     continue
                 trace.append(candidates[i])
                 backtrace(i, target_ - candidates[i], trace)
