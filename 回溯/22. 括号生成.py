@@ -2,7 +2,7 @@ from typing import List
 
 
 class Solution:
-    def generateParenthesis(self, n: int) -> List[str]:
+    def generateParenthesis1(self, n: int) -> List[str]:
         res = []
         left, right, length = 0, 0, 0
 
@@ -37,6 +37,35 @@ class Solution:
                     trace = trace[:-1]
                     right -= 1
                     length -= 1
+
+        backtrace('')
+        return res
+
+    def generateParenthesis(self, n: int) -> List[str]:
+        res = []
+        left, right, length = 0, 0, 0
+
+        def backtrace(trace: str):
+            nonlocal left, right, length
+            if length == 2 * n:
+                res.append(trace)
+                return
+
+            if left < n:
+                trace += '('
+                left += 1
+                length += 1
+                backtrace(trace)
+                trace = trace[:-1]
+                left -= 1
+                length -= 1
+            if right < left:
+                trace += ')'
+                right += 1
+                length += 1
+                backtrace(trace)
+                right -= 1
+                length -= 1
 
         backtrace('')
         return res
