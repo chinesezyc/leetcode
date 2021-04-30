@@ -6,6 +6,8 @@ class Solution:
         res = []
 
         def backtrace(idx: int, trace: List[int], length: int):
+            if k - length > n - idx + 1:
+                return
             if length == k:
                 res.append(trace.copy())
                 return
