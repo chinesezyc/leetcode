@@ -4,31 +4,19 @@ from typing import List
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
         res = []
-        left, right, length = 0, 0, 0
 
-        def backtrace(trace: str):
-            nonlocal left, right, length
-            if length == 2 * n:
-                res.append(trace)
+        def backtrace(idx: int, trace: List[int], length: int):
+            if length == k:
+                res.append(trace.copy())
                 return
-
-            if left < n:
-                trace += '('
-                left += 1
+            for i in range(idx, n + 1):
+                trace.append(i)
                 length += 1
-                backtrace(trace)
-                trace = trace[:-1]
-                left -= 1
-                length -= 1
-            if right < left:
-                trace += ')'
-                right += 1
-                length += 1
-                backtrace(trace)
-                right -= 1
+                backtrace(i + 1, trace, length)
+                trace.pop(-1)
                 length -= 1
 
-        backtrace('')
+        backtrace(1, [], 0)
         return res
 
 
