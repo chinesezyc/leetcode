@@ -17,16 +17,16 @@ class Solution:
             if trace == word:
                 return True
             for m, n in [[-1, 0], [1, 0], [0, -1], [0, 1], ]:
-                if 0 <= w + m < width and 0 <= h + n < height:
-                    if board_[w + m, h + n] == ord(word[idx]) and flags[w + m, h + n] == 0:
-                        # print([w + m, h + n], chr(board_[w + m, h + n]))
-
-                        flags[w + m, h + n] = 1
-                        trace += word[idx]
-                        if backtrace(trace, w + m, h + n, idx + 1):
-                            return True
-                        trace = trace[:-1]
-                        flags[w + m, h + n] = 0
+                if 0 <= w + m < width \
+                        and 0 <= h + n < height \
+                        and board_[w + m, h + n] == ord(word[idx]) \
+                        and flags[w + m, h + n] == 0:
+                    flags[w + m, h + n] = 1
+                    trace += word[idx]
+                    if backtrace(trace, w + m, h + n, idx + 1):
+                        return True
+                    trace = trace[:-1]
+                    flags[w + m, h + n] = 0
             return False
 
         for i in range(width):
