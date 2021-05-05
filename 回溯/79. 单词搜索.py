@@ -16,18 +16,17 @@ class Solution:
             nonlocal flags, board_, width, height
             if trace == word:
                 return True
-            if board_[w, h] == ord(trace[-1]):
-                for m, n in [[-1, 0], [1, 0], [0, -1], [0, 1], ]:
-                    if 0 <= w + m < width and 0 <= h + n < height:
-                        if board_[w + m, h + n] == ord(word[idx]) and flags[w + m, h + n] == 0:
-                            # print([w + m, h + n], chr(board_[w + m, h + n]))
+            for m, n in [[-1, 0], [1, 0], [0, -1], [0, 1], ]:
+                if 0 <= w + m < width and 0 <= h + n < height:
+                    if board_[w + m, h + n] == ord(word[idx]) and flags[w + m, h + n] == 0:
+                        # print([w + m, h + n], chr(board_[w + m, h + n]))
 
-                            flags[w + m, h + n] = 1
-                            trace += word[idx]
-                            if backtrace(trace, w + m, h + n, idx + 1):
-                                return True
-                            trace = trace[:-1]
-                            flags[w + m, h + n] = 0
+                        flags[w + m, h + n] = 1
+                        trace += word[idx]
+                        if backtrace(trace, w + m, h + n, idx + 1):
+                            return True
+                        trace = trace[:-1]
+                        flags[w + m, h + n] = 0
             return False
 
         for i in range(width):
@@ -36,11 +35,11 @@ class Solution:
                     flags[i, j] = 1
                     if backtrace(word[0], i, j, 1):
                         return True
-                flags *= 0
+                    flags[i, j] = 0
         return False
 
 
 if __name__ == "__main__":
     solution = Solution()
-    ret = solution.exist(board=[["A","B","C","E"],["S","F","E","S"],["A","D","E","E"]], word="ABCESEEEFS")
+    ret = solution.exist(board=[["A", "B", "C", "E"], ["S", "F", "E", "S"], ["A", "D", "E", "E"]], word="ABCESEEEFS")
     print(ret)
