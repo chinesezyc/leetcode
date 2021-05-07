@@ -32,7 +32,7 @@ class Solution:
         return res
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     solution = Solution()
     ret = solution.restoreIpAddresses(s="25525511135")
     print(ret)
