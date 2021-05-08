@@ -9,8 +9,6 @@ class Solution:
             if total_num == n and num_len == k:
                 res.append(choice.copy())
                 return
-            if num_len > k:
-                return
 
             for i in range(start_idx, 10):
                 if num_len >= k or total_num + i > n:
