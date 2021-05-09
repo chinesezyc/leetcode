@@ -3,30 +3,35 @@ from typing import List
 
 class Solution:
     def isAdditiveNumber(self, num: str) -> bool:
+        def fetchCurValue(l, r):
+            if l < r and num[l] == '0':
+                return -1
+            res = 0
+            while (l <= r):
+                res += res * 10 + int(num[l])
+                l += 1
+            return res
 
-        def backtrace(start_idx: int, val1: int, val2: int) -> bool:
-            if start_idx-1 == len(num):
-                return True
+        def backtrace(start_idx: int, total: int, pre: int, k: int) -> bool:
+            if start_idx == len(num):
+                return k > 2
 
-            for i in range(start_idx+1, len(num)+1):
-                if num[i-1] == '0':
-                    break
-                if val1 and val2 and val1 + val2 != int(num[start_idx:start_idx + i]):
-                    break
+            for i in range(start_idx, len(num)):
+                cur = fetchCurValue(start_idx, i)
+                if cur < -1:
+                    continue
+                if k >= 2 and total != cur:
+                    continue
 
-                tmp = val1
-                val1 = val2
-                val2 = int(num[start_idx:i])
-                if backtrace(i, val1, val2):
+                if backtrace(i + 1, pre + cur, cur, k + 1):
                     return True
-                val2 = val1
-                val1 = tmp
+
             return False
 
-        return backtrace(0, None, None)
+        return backtrace(0, 0, 0, 0)
 
 
 if __name__ == "__main__":
     solution = Solution()
-    ret = solution.isAdditiveNumber(num="112")
+    ret = solution.isAdditiveNumber(num="199100199")
     print(ret)
