@@ -18,8 +18,8 @@ class Solution:
 
             for i in range(start_idx, len(num)):
                 cur = fetchCurValue(start_idx, i)
-                if cur < -1:
-                    continue
+                if cur < 0:
+                    break
                 if k >= 2 and total != cur:
                     continue
 
