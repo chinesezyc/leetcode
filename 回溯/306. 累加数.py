@@ -7,8 +7,8 @@ class Solution:
             if l < r and num[l] == '0':
                 return -1
             res = 0
-            while (l <= r):
-                res += res * 10 + int(num[l])
+            while l <= r:
+                res = res * 10 + int(num[l])
                 l += 1
             return res
 
