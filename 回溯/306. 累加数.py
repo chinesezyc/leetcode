@@ -2,31 +2,31 @@ from typing import List
 
 
 class Solution:
-    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
-        res = []
+    def isAdditiveNumber(self, num: str) -> bool:
 
-        def backtrace(start_idx: int, total_num: int, num_len: int, choice: List[int]):
-            if total_num == n and num_len == k:
-                res.append(choice.copy())
-                return
+        def backtrace(start_idx: int, val1: int, val2: int) -> bool:
+            if start_idx == len(num):
+                return True
 
-            for i in range(start_idx, 10):
-                if num_len >= k or total_num + i > n:
+            for i in range(start_idx, len(num)):
+                if num[i] == '0':
+                    break
+                if val1 and val2 and val1 + val2 != int(num[start_idx:start_idx + i + 1]):
                     break
 
-                choice.append(i)
-                num_len += 1
-                total_num += i
-                backtrace(i + 1, total_num, num_len, choice)
-                choice.pop(-1)
-                num_len -= 1
-                total_num -= i
+                tmp = val1
+                val1 = val2
+                val2 = int(num[start_idx:start_idx + i + 1])
+                if backtrace(i + 1, val1, val2):
+                    return True
+                val2 = val1
+                val1 = tmp
+            return False
 
-        backtrace(1, 0, 0, [])
-        return res
+        return backtrace(0, None, None)
 
 
 if __name__ == "__main__":
     solution = Solution()
-    ret = solution.combinationSum3(k=3, n=9)
+    ret = solution.isAdditiveNumber(num="113")
     print(ret)
