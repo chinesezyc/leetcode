@@ -3,6 +3,8 @@ from typing import List
 
 class Solution:
     def countNumbersWithUniqueDigits(self, n: int) -> int:
+        if n == 0:
+            return 1
 
         def backtrace(idx: int, use_bool: List[bool]) -> int:
             count = 0
