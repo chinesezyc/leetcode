@@ -5,24 +5,24 @@ class Solution:
     def countArrangement(self, n: int) -> int:
         res = 0
 
-        def backtrace(trace: List[int], idx: int, use_bool: List[bool]):
+        def backtrace(trace: int, idx: int, use_bool: List[bool]):
             nonlocal res
             if n == idx:
-                res+=1
+                res += 1
                 return
             for i in range(1, n + 1):
                 if idx == 1 and i == 0 and n > 1:
                     continue
                 if use_bool[i]:
                     continue
-                if i % (len(trace) + 1) == 0 or (len(trace) + 1) % i == 0:
+                if i % trace == 0 or trace % i == 0:
                     use_bool[i] = True
-                    trace.append(i)
+                    trace += 1
                     backtrace(trace, idx + 1, use_bool)
                     use_bool[i] = False
-                    trace.pop(-1)
+                    trace -= 1
 
-        backtrace([], 0, [False] * (n+1))
+        backtrace(1, 0, [False] * (n + 1))
         return res
 
 
