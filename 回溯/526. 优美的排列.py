@@ -3,11 +3,12 @@ from typing import List
 
 class Solution:
     def countArrangement(self, n: int) -> int:
-        res = []
+        res = 0
 
         def backtrace(trace: List[int], idx: int, use_bool: List[bool]):
+            nonlocal res
             if n == idx:
-                res.append(trace.copy())
+                res+=1
                 return
             for i in range(1, n + 1):
                 if idx == 1 and i == 0 and n > 1:
@@ -22,7 +23,7 @@ class Solution:
                     trace.pop(-1)
 
         backtrace([], 0, [False] * (n+1))
-        return len(res)
+        return res
 
 
 if __name__ == "__main__":
