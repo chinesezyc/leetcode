@@ -11,13 +11,13 @@ class Solution:
             if start_idx == length:
                 res.append(trace)
                 return
-
+            # 首先不管是数字还是字母，都要选择，故进行回溯
             backtrace(trace+s[start_idx], start_idx + 1)
-            if s[start_idx].isalpha():
-                if s[start_idx].islower():
-                    backtrace(trace+s[start_idx].upper(), start_idx + 1)
-                if s[start_idx].isupper():
-                    backtrace(trace+s[start_idx].lower(), start_idx + 1)
+            # 其次如果这个字符是字母的话，相应的另一种状态也要进入回溯
+            if s[start_idx].islower():
+                backtrace(trace+s[start_idx].upper(), start_idx + 1)
+            if s[start_idx].isupper():
+                backtrace(trace+s[start_idx].lower(), start_idx + 1)
 
         backtrace('', 0)
         return res
