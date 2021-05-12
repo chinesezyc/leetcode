@@ -7,20 +7,17 @@ class Solution:
         length = len(s)
 
         def backtrace(trace: str, start_idx: int):
-            nonlocal res, length
+            nonlocal length
             if start_idx == length:
                 res.append(trace)
                 return
 
-            if s[start_idx].isdigit():
-                trace += s[start_idx]
-                backtrace(trace, start_idx + 1)
-                trace = trace[:-1]
-            else:
-                for c in [s[start_idx].lower(), s[start_idx].upper()]:
-                    trace += c
-                    backtrace(trace, start_idx + 1)
-                    trace = trace[:-1]
+            backtrace(trace+s[start_idx], start_idx + 1)
+            if s[start_idx].isalpha():
+                if s[start_idx].islower():
+                    backtrace(trace+s[start_idx].upper(), start_idx + 1)
+                if s[start_idx].isupper():
+                    backtrace(trace+s[start_idx].lower(), start_idx + 1)
 
         backtrace('', 0)
         return res
