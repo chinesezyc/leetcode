@@ -11,16 +11,16 @@ class Solution:
             if start_idx == length:
                 res.append(trace)
                 return
-            for i in range(start_idx, length):
-                if s[i].isascii():
-                    trace += s[i]
-                    backtrace(trace, i + 1)
+
+            if s[start_idx].isdigit():
+                trace += s[start_idx]
+                backtrace(trace, start_idx + 1)
+                trace = trace[:-1]
+            else:
+                for c in [s[start_idx].lower(), s[start_idx].upper()]:
+                    trace += c
+                    backtrace(trace, start_idx + 1)
                     trace = trace[:-1]
-                else:
-                    for c in [s[i].lower(), s[i].upper()]:
-                        trace += c
-                        backtrace(trace, i + 1)
-                        trace = trace[:-1]
 
         backtrace('', 0)
         return res
