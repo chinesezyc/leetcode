@@ -20,7 +20,7 @@ class Solution:
                                              right])
             return cache[left][right]
 
-        return backtrace(0, length - 1)
+        return int(backtrace(0, length - 1)
 
 
 if __name__ == "__main__":
