@@ -36,5 +36,27 @@ class Solution:
 
 if __name__ == "__main__":
     solution = Solution()
-    ret = solution.maxCoins(nums= [3]*500)
+    ret = solution.maxCoins(nums= [3]*5)
     print(ret)
+    length=5000
+    import time
+    a=time.process_time()
+    dp = [[0] * length for _ in range(length)]
+    for i in range(length):
+        for j in range(length):
+            dp[i][j] = max(dp[i][j],1)
+    b=time.process_time()
+    m=b*1000-a*1000
+    print(b*1000-a*1000)
+
+    a=time.process_time()
+    dp = np.zeros(shape=(length, length), dtype=int)
+    for i in range(length):
+        for j in range(length):
+            dp[i][j] = max(dp[i][j],1)
+
+    b=time.process_time()
+    n=b*1000-a*1000
+    print(b*1000-a*1000)
+
+    print(n/m)
