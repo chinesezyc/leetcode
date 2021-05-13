@@ -3,7 +3,7 @@ import numpy as np
 
 
 class Solution:
-    def maxCoins(self, nums: List[int]) -> int:
+    def maxCoins1(self, nums: List[int]) -> int:
         coins = [1] + nums + [1]
         length = len(coins)
         cache = np.ones(shape=(length, length), dtype=int) * -1
@@ -22,8 +22,19 @@ class Solution:
 
         return int(backtrace(0, length - 1))
 
+    def maxCoins(self, nums: List[int]) -> int:
+        coins = [1] + nums + [1]
+        length = len(coins)
+        dp = [[0] * length for _ in range(length)]
+
+        for i in range(length - 3, -1, -1):
+            for j in range(i + 2, length):
+                for k in range(i + 1, j):
+                    dp[i][j] = max(dp[i][j], dp[i][k] + dp[k][j] + coins[i] * coins[k] * coins[j])
+        return int(dp[0][length - 1])
+
 
 if __name__ == "__main__":
     solution = Solution()
-    ret = solution.maxCoins(nums=[3, 1, 5, 8])
+    ret = solution.maxCoins(nums= [3]*500)
     print(ret)
