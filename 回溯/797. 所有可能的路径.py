@@ -12,9 +12,7 @@ class Solution:
                 return
 
             for i in graph[point]:
-                trace.append(i)
-                backtrace(i, trace)
-                trace.pop(-1)
+                backtrace(i, trace + [i])
 
         for p in graph[0]:
             backtrace(p, [0, p])
@@ -23,5 +21,5 @@ class Solution:
 
 if __name__ == "__main__":
     solution = Solution()
-    ret = solution.allPathsSourceTarget(graph=[[4,3,1],[3,2,4],[3],[4],[]])
+    ret = solution.allPathsSourceTarget(graph=[[4, 3, 1], [3, 2, 4], [3], [4], []])
     print(ret)
