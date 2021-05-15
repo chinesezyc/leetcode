@@ -3,25 +3,25 @@ from typing import List
 
 class Solution:
     def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
-        length = len(s)
+        res = []
 
-        def backtrace(pre_num: int, start: int, nums: int):
-            nonlocal length
-            if start >= length and nums > 1:
-                return True
+        def backtrace(point: int, trace: List[int]):
+            nonlocal res
+            if point == len(graph) - 1:
+                res.append(trace.copy())
+                return
 
-            for i in range(start, length):
-                val_int = int(s[start:i + 1])
-                if pre_num - val_int != 1 and nums:
-                    continue
-                if backtrace(val_int, i + 1, nums + 1):
-                    return True
-            return False
+            for i in graph[point]:
+                trace.append(i)
+                backtrace(i, trace)
+                trace.pop(-1)
 
-        return backtrace(-2, 0, 0)
+        for p in graph[0]:
+            backtrace(p, [0, p])
+        return res
 
 
 if __name__ == "__main__":
     solution = Solution()
-    ret = solution.splitString(s="141312000011")
+    ret = solution.allPathsSourceTarget(graph=[[4,3,1],[3,2,4],[3],[4],[]])
     print(ret)
