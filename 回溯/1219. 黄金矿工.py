@@ -6,7 +6,7 @@ class Solution:
         width, height = len(grid[0]), len(grid)
         used = [[False] * width for _ in range(height)]
         path = [[0, -1], [0, 1], [-1, 0], [1, 0]]
-        res = -1
+        res = []
 
         def check_good_path(w: int, h: int):
             nonlocal path, width, height
@@ -25,8 +25,10 @@ class Solution:
             nonlocal res, used
             tmp, num = check_good_path(w, h)
             if num == 0:
-                res = max(res, val)
+                res.append(val)
             for i, j in tmp:
+                if used[i][j] or grid[i][j] == 0:
+                    continue
                 val += grid[i][j]
                 used[i][j] = True
                 backtrace(i, j, val)
