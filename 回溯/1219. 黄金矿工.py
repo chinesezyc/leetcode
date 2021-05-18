@@ -8,7 +8,7 @@ class Solution:
         path = [[0, -1], [0, 1], [-1, 0], [1, 0]]
         res = []
 
-        def check_good_path(w: int, h: int):
+        def check_good_path(h: int, w: int):
             nonlocal path, width, height
             tmp = []
             num = 0
@@ -21,9 +21,9 @@ class Solution:
                     num += 1
             return tmp, num
 
-        def backtrace(w: int, h: int, val: int):
+        def backtrace(h: int, w: int, val: int, trace: List[int]):
             nonlocal res, used
-            tmp, num = check_good_path(w, h)
+            tmp, num = check_good_path(h, w)
             if num == 0:
                 res.append(val)
             for i, j in tmp:
@@ -31,21 +31,23 @@ class Solution:
                     continue
                 val += grid[i][j]
                 used[i][j] = True
-                backtrace(i, j, val)
+                trace.append(grid[i][j])
+                backtrace(i, j, val, trace)
                 val -= grid[i][j]
                 used[i][j] = False
+                trace.pop(-1)
 
         for h in range(height):
             for w in range(width):
                 if grid[h][w] != 0:
                     used[h][w] = True
-                    backtrace(w, h, grid[h][w])
+                    backtrace(h, w, grid[h][w], [grid[h][w]])
                     used[h][w] = False
 
-        return res
+        return max(res)
 
 
 if __name__ == "__main__":
     solution = Solution()
-    ret = solution.getMaximumGold(grid=[[1,0,7],[2,0,6],[3,4,5],[0,3,0],[9,0,20]])
+    ret = solution.getMaximumGold(grid=[[1, 0, 7], [2, 0, 6], [3, 4, 5], [0, 3, 0], [9, 0, 20]])
     print(ret)
