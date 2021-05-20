@@ -27,6 +27,18 @@ class Solution:
 
         return dac(0, len(nums) - 1)
 
+    def majorityElement(self, nums: List[int]) -> int:
+        count = 0
+        candidate = None
+
+        for num in nums:
+            if count == 0:
+                candidate = num
+            count += (1 if num == candidate else -1)
+
+        return candidate
+
+
 
 if __name__ == "__main__":
     solution = Solution()
