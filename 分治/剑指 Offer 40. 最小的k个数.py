@@ -3,7 +3,8 @@ from typing import List
 
 class Solution:
     def getLeastNumbers(self, arr: List[int], k: int) -> List[int]:
-        pass
+        arr.sort()
+        return arr[:k]
 
 
 if __name__ == "__main__":
