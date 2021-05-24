@@ -11,7 +11,7 @@ class Solution:
                 res[val] = 0
         return max(res.items(), key=lambda x: x[1])[0]
 
-    def majorityElement2(self, nums: List[int]) -> int:
+    def majorityElement(self, nums: List[int]) -> int:
         def dac(left: int, right: int) -> int:
             if left == right:
                 return nums[left]
@@ -25,9 +25,10 @@ class Solution:
                 right_count = sum([1 for i in range(mid + 1, right + 1) if nums[i] == right_num])
                 return left_num if left_count > right_count else right_num
 
-        return dac(0, len(nums) - 1)
+        ret = dac(0, len(nums) - 1)
+        return ret if nums.count(ret) > (len(nums) // 2) else -1
 
-    def majorityElement(self, nums: List[int]) -> int:
+    def majorityElement3(self, nums: List[int]) -> int:
         count = 0
         candidate = None
 
@@ -42,5 +43,5 @@ class Solution:
 
 if __name__ == "__main__":
     solution = Solution()
-    ret = solution.majorityElement([2, 2, 1, 1, 1, 1, 2])
+    ret = solution.majorityElement([3, 2, 3])
     print(ret)
