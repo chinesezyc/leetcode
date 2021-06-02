@@ -5,8 +5,15 @@ class Solution:
     def longestSubstring(self, s: str, k: int) -> int:
         if k > len(s):
             return 0
-        for c in set(s):
-            if s.count(c) < k:
+        char_nums = {}
+        for c in s:
+            if char_nums.__contains__(c):
+                char_nums[c] += 1
+            else:
+                char_nums[c] = 1
+
+        for c in char_nums:
+            if char_nums[c] < k:
                 return max(self.longestSubstring(i, k) for i in s.split(c))
         return len(s)
 
