@@ -20,9 +20,10 @@ class Solution:
                 return
             dfs(cur.left)  # 递归左子树
             if self.pre:  # 修改节点引用
-                self.pre.right, cur.left = cur, self.pre
+                self.pre.right = cur
             else:  # 记录头节点
                 self.head = cur
+            cur.left = self.pre
             self.pre = cur  # 保存 cur
             dfs(cur.right)  # 递归右子树
 
