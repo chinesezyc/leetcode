@@ -32,3 +32,4 @@ class Solution:
         dfs(root)
         self.head.left, self.pre.right = self.pre, self.head
         return self.head
+
