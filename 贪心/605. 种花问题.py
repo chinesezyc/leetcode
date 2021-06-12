@@ -3,7 +3,7 @@ from typing import List
 
 class Solution:
     def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
-        pass
+        low,high=0,len(flowerbed)
 
 
 if __name__ == "__main__":
