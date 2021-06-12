@@ -7,7 +7,7 @@ class Solution:
         i, high = 1, len(flowerbed)
 
         while i <= high - 2 and n > 0:
-            if flowerbed[i - 1] + flowerbed[i] + flowerbed[i + 1] == 0:
+            if flowerbed[i - 1] == 0 and flowerbed[i] == 0 and flowerbed[i + 1] == 0:
                 n -= 1
                 flowerbed[i] = 1
             i += 1
