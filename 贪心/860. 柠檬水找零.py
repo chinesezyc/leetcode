@@ -3,12 +3,11 @@ from typing import List
 
 class Solution:
     def lemonadeChange(self, bills: List[int]) -> bool:
-        i, length = 0, len(bills)
         five, ten = 0, 0
-        for i in range(length):
-            if bills[i] == 5:
+        for bill in bills:
+            if bill == 5:
                 five += 1
-            elif bills[i] == 10:
+            elif bill == 10:
                 if five > 0:
                     five -= 1
                     ten += 1
