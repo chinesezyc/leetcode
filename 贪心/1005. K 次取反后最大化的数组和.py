@@ -4,7 +4,6 @@ from typing import List
 class Solution:
     def largestSumAfterKNegations(self, nums: List[int], k: int) -> int:
         nums.sort()
-        i, length = 0, len(nums)
         for _ in range(k):
             nums[0] = -nums[0]
             nums.sort()
