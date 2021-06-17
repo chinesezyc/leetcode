@@ -4,14 +4,11 @@ from typing import List
 class Solution:
     def largestSumAfterKNegations(self, nums: List[int], k: int) -> int:
         nums.sort()
-        i,length=0,len(nums)
+        i, length = 0, len(nums)
         for _ in range(k):
-            if nums[i]==0:
-                continue
-            elif nums[i]<0:
-                nums[i]=-nums[i]
-                i+=1
-        print(nums)
+            nums[0] = -nums[0]
+            nums.sort()
+        return sum(nums)
 
 
 if __name__ == "__main__":
