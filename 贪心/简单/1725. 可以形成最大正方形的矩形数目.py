@@ -4,12 +4,9 @@ from typing import List
 class Solution:
     def countGoodRectangles(self, rectangles: List[List[int]]) -> int:
         sides = []
-        max_len = -1
         for rect in rectangles:
-            val = min(rect)
-            sides.append(val)
-            max_len = max(max_len, val)
-        return sides.count(max_len)
+            sides.append(min(rect))
+        return sides.count(max(sides))
 
 
 if __name__ == "__main__":
