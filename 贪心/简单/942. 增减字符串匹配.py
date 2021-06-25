@@ -3,15 +3,15 @@ from typing import List
 
 class Solution:
     def diStringMatch(self, s: str) -> List[int]:
-        pre = nums[0]
-        cnt = 0
-        for i in range(1, len(nums)):
-            if nums[i] <= pre:
-                cnt += pre - nums[i] + 1
-                nums[i] = pre + 1
-            pre = nums[i]
-
-        return cnt
+        nums = [i for i in range(len(s) + 1)]
+        result = []
+        for c in s:
+            if c == 'I':
+                result.append(nums.pop(0))
+            else:
+                result.append(nums.pop(-1))
+        result.append(nums.pop(-1))
+        return result
 
 
 if __name__ == "__main__":
