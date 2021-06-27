@@ -13,5 +13,5 @@ class Solution:
 
 if __name__ == "__main__":
     solution = Solution()
-    ret = solution.arrayPairSum([1,2,3,4])
+    ret = solution.arrayPairSumK([1,2,3,4])
     print(ret)
