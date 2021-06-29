@@ -17,5 +17,5 @@ class Solution:
 
 if __name__ == "__main__":
     solution = Solution()
-    ret = solution.maxArea(height=[1, 5, 1, 3, 4, 5, 2, 5, 3, 3, 8, 6])
+    ret = solution.maxArea(height=[1, 5, 1, 3, 6])
     print(ret)
