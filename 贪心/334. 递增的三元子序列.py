@@ -15,8 +15,6 @@ class Solution:
         return False
 
 
-
-
 if __name__ == "__main__":
     solution = Solution()
     ret = solution.increasingTriplet(nums=[2, 1, 5, 0, 4, 6])
