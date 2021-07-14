@@ -2,7 +2,7 @@ from typing import List
 
 
 class Solution:
-    def reconstructQueue(self, people: List[List[int]]) -> List[List[int]]:
+    def wiggleMaxLength(self, nums: List[int]) -> int:
         people.sort(key=lambda x: [-x[0], x[1]])
         ret = []
         for i in people:
@@ -12,5 +12,5 @@ class Solution:
 
 if __name__ == "__main__":
     solution = Solution()
-    result = solution.reconstructQueue(people=[[7, 0], [4, 4], [7, 1], [5, 0], [6, 1], [5, 2]])
+    result = solution.wiggleMaxLength(nums = [1,7,4,9,2,5])
     print(result)
