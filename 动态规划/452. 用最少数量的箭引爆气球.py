@@ -7,9 +7,9 @@ class Solution:
         ret = 1
         right = points[0][1]
 
-        for i in range(len(points)):
-            if points[i][0] > right:
-                right = points[i][1]
+        for p in points:
+            if p[0] > right:
+                right = p[1]
                 ret += 1
         return ret
 
