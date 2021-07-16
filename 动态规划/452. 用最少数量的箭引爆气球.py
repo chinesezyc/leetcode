@@ -4,14 +4,13 @@ from typing import List
 class Solution:
     def findMinArrowShots(self, points: List[List[int]]) -> int:
         points.sort(key=lambda x: x[1])
-        ret = 0
-        while points:
-            right = points[0][1]
-            ret += 1
-            del points[0]
-            for i in range(len(points) - 1, -1, -1):
-                if points[i][0] <= right <= points[i][1]:
-                    del points[i]
+        ret = 1
+        right = points[0][1]
+
+        for i in range(len(points)):
+            if points[i][0] > right:
+                right = points[i][1]
+                ret += 1
         return ret
 
 
