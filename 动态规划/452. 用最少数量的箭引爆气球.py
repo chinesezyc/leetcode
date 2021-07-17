@@ -12,7 +12,6 @@ class Solution:
             for i in range(len(points) - 1, -1, -1):
                 if points[i][0] <= right <= points[i][1]:
                     del points[i]
-
         return ret
 
 
