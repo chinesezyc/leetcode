@@ -2,10 +2,10 @@ from typing import List
 
 
 class Solution:
-    def wiggleMaxLength(self, nums: List[int]) -> int:
+    def findMinArrowShots(self, points: List[List[int]]) -> int:
 
 
 if __name__ == "__main__":
     solution = Solution()
-    result = solution.wiggleMaxLength(nums=[1, 7, 4, 9, 2, 5])
+    result = solution.findMinArrowShots(points = [[10,16],[2,8],[1,6],[7,12]])
     print(result)
