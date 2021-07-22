@@ -2,7 +2,7 @@ from typing import List
 
 
 class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
+    def maxProfit(self, k: int, prices: List[int]) -> int:
         dp = [[0, 0] for _ in range(prices.__len__())]
         dp[0][1] = -prices[0]
         for i in range(1, prices.__len__()):
@@ -14,5 +14,5 @@ class Solution:
 
 if __name__ == "__main__":
     solution = Solution()
-    result = solution.maxProfit([1, 2, 3, 0, 2])
+    result = solution.maxProfit(k = 2, prices = [3,2,6,5,0,3])
     print(result)
