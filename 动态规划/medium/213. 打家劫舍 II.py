@@ -9,8 +9,10 @@ class Solution:
         for k in range(nums.__len__()):
             dp = [0] * nums.__len__()
             k = k % nums.__len__()
-            dp[k + 0], dp[k + 1] = nums[0], max(nums[:2])
-            for i in range(k + 2, nums.__len__()):
+            dp[k + 0], dp[k + 1] = nums[k+0], max(nums[k:k+2])
+            for i in range(k + 2, k+nums.__len__()):
+                i = i % nums.__len__()
+
                 dp[i] = max(dp[i - 1], dp[i - 2] + nums[i])
 
         return dp[-1]
