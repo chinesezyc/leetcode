@@ -5,6 +5,7 @@ class Solution:
     def rob(self, nums: List[int]) -> int:
         if nums.__len__() <= 2:
             return max(nums)
+
         def fun(sub_nums: List[int]) -> int:
             if sub_nums.__len__() <= 2:
                 return max(sub_nums)
