@@ -20,5 +20,5 @@ class Solution:
 
 if __name__ == "__main__":
     solution = Solution()
-    result = solution.rob([3,4,3])
+    result = solution.rob([3, 4, 3])
     print(result)
