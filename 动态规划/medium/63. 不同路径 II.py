@@ -4,8 +4,6 @@ from typing import List
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
         m, n = obstacleGrid.__len__(), obstacleGrid[0].__len__()
-        if obstacleGrid[0][0] == 1:
-            return 0
         dp = [[0] * n for _ in range(m)]
         for i in range(m):
             if obstacleGrid[i][0] == 1:
@@ -26,5 +24,5 @@ class Solution:
 
 if __name__ == "__main__":
     solution = Solution()
-    result = solution.uniquePathsWithObstacles(obstacleGrid=[[0,0,0,1]])
+    result = solution.uniquePathsWithObstacles(obstacleGrid=[[1]])
     print(result)
