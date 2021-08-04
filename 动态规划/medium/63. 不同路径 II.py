@@ -2,16 +2,32 @@ from typing import List
 
 
 class Solution:
-    def uniquePaths(self, m: int, n: int) -> int:
-        dp = [[1] * n for _ in range(m)]
+    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
+        m, n = obstacleGrid.__len__(), obstacleGrid[0].__len__()
+        if obstacleGrid[0][0] == 1:
+            return 0
+        dp = [[0] * n for _ in range(m)]
+        for i in range(m):
+            if obstacleGrid[i][0] == 1:
+                break
+            dp[i][0] = 1
+        for j in range(n):
+            if obstacleGrid[0][j] == 1:
+                break
+            dp[0][j] = 1
         for i in range(1, m):
             for j in range(1, n):
-                dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
+                if obstacleGrid[i][j] == 1:
+                    continue
+                if obstacleGrid[i - 1][j] == 0:
+                    dp[i][j] += dp[i - 1][j]
+                if obstacleGrid[i][j - 1] == 0:
+                    dp[i][j] += dp[i][j - 1]
 
         return dp[-1][-1]
 
 
 if __name__ == "__main__":
     solution = Solution()
-    result = solution.uniquePaths(m=3, n=7)
+    result = solution.uniquePathsWithObstacles(obstacleGrid=[[0,0,0,1]])
     print(result)
