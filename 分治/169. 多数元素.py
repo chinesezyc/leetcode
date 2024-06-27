@@ -5,10 +5,7 @@ class Solution:
     def majorityElement1(self, nums: List[int]) -> int:
         res = {}
         for val in nums:
-            if res.__contains__(val):
-                res[val] += 1
-            else:
-                res[val] = 0
+            res[val]=res.get(val,0)+1
         return max(res.items(), key=lambda x: x[1])[0]
 
     def majorityElement(self, nums: List[int]) -> int:
