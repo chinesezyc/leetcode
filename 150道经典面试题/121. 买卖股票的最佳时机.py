@@ -4,12 +4,13 @@ from typing import List
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         n = len(prices)
-        dp_i0, dp_i1 = 0, -prices[0]
+        dp = [[0, 0] for _ in prices]
+        dp[0][0], dp[0][1] = 0, -prices[0]
         for i in range(1, n):
             # 今天不持股
-            dp_i0 = max(dp_i0, dp_i1 + prices[i])
-            dp_i1 = max(dp_i1, -prices[i])
-        return dp_i0
+            dp[i][0] = max(dp[i - 1][0], dp[i - 1][1] + prices[i])
+            dp[i][1] = max(dp[i - 1][1], - prices[i])
+        return dp[n - 1][0]
 
 
 if __name__ == "__main__":
