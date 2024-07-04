@@ -3,14 +3,13 @@ from typing import List
 
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        n = len(prices)
-        dp = [[0, 0] for _ in prices]
-        dp[0][0], dp[0][1] = 0, -prices[0]
-        for i in range(1, n):
-            # 今天不持股
-            dp[i][0] = max(dp[i - 1][0], dp[i - 1][1] + prices[i])
-            dp[i][1] = max(dp[i - 1][1], - prices[i])
-        return dp[n - 1][0]
+        ans = 0
+        min_pirce = prices[0]
+        for p in prices[1:]:
+            min_pirce = min(min_pirce, p)
+            ans = max(ans, p - min_pirce)
+
+        return ans
 
 
 if __name__ == "__main__":
